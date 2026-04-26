@@ -1,0 +1,151 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    height: 100vh;
+    background: #584040;
+    display: flex;
+    align-items: center;
+
+}
+
+#game-container{
+    width: 950px;
+    height: 290px;
+    position: relative;
+    background: linear-gradient(#B7D6C7, #FFE2D1);
+    overflow: hidden;
+
+}
+
+.cloud {
+    width: 92px;
+    height: 26px;
+
+    position: absolute;
+    z-index: 0;
+
+    background: url(./img/nube.png) no-repeat;
+    background-size: 92px 26px;
+}
+
+#floor{
+    width: 200%;
+    height: 42px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background: url(./img/suelo.png) repeat-x 0px 0px;
+    background-size: 50% 42px;
+}
+
+.coin{
+    width: 15%;
+    height: 50%;
+    position: absolute;
+    bottom: 75px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(./img/moneda.png) no-repeat center center;
+}
+
+
+#score{
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    z-index: 10;
+
+    color: #d88d78;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.cactus{
+    width: 46px;
+    height: 96px;
+    position: absolute;
+    bottom: 16px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(./img/cactus1.png) no-repeat;
+}
+
+.cactus2{
+    width: 98px;
+    height: 66px;
+
+    background: url(./img/cactus2.png) no-repeat;
+}
+
+.dino{
+    width: 84px;
+    height: 84px;
+    position: absolute;
+    bottom: 22px;
+    left: 42px;
+    z-index: 2;
+    background: url(./img/dino.png) repeat-x 0px 0px;
+    background-size: 336px 84px;
+    background-position: 0px;
+}
+
+.dino-running{
+    animation: animarDino 0.25s steps(2) infinite;
+}
+
+.dino-crashed{
+    background-position-x: -252px;
+}
+
+.game-over{
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #da5454;
+    font-size: 30px;
+    font-family: system-ui, 'Helvetica Neue', sans-serif;
+    font-weight: 850;
+    z-index: 100;
+}
+
+.restart{
+    display: none;
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    border: 1px solid #da5454;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: #da5454;
+    font-family: system-ui, 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    z-index: 100; 
+    cursor: pointer; 
+}
+
+
+@keyframes animarDino {
+    from{
+        background-position: -84px;
+    }
+    to{
+        background-position: -252px;
+    }
+    
+}
