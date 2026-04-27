@@ -2,21 +2,20 @@
 var time = new Date();
 var deltaTime = 0; //Rastrea milisegundso que tarda en actualizarse el juego
 
-if (document.readyState === "complete" || document.readyState === "interactive") 
+if (document.readyState === "complete" || document.readyState === "interactive")
 //readyState describe el estado de carga del documento.
 //Si es complete o interactive, se llama a Init
 {
-  setTimeout(Init, 1); 
+  setTimeout(Init, 1);
 } else {
   document.addEventListener("DOMContentLoaded", Init);
 }
 
 //INICIALIZACIÓN DEL JUEGO
-function Init() 
-{
+function Init() {
   time = new Date();
-  Start(); 
-  Loop(); 
+  Start();
+  Loop();
 }
 
 //ACTUALIZACIÓN DEL JUEGO
@@ -120,7 +119,7 @@ function Jump() {
     jumping = true;
     velY = impulso;
     dino.classList.remove("dino-running");
-    
+
   }
 }
 
@@ -150,41 +149,40 @@ function MoveFloor() { //El suelo se mueve a la izquierda
 
 //CALCULO DE DESPLAZAMIENTO
 function CalcularDesplazamiento() {
-  return velEscenario * deltaTime * gameVel; 
+  return velEscenario * deltaTime * gameVel;
   //Calcula el desplazamiento del escenario (velocidad * tiempo * velocidad del juego)
 }
 
 //CIELO Y CLIMA
 function AñadirNube() {
   tiempoHastaNube -= deltaTime;
-    if(tiempoHastaNube <= 0) {
-        CrearNube();
-    }
+  if (tiempoHastaNube <= 0) {
+    CrearNube();
+  }
 }
 
 function CrearNube() {
   var cloud = document.createElement("div");
-    container.appendChild(cloud);
-    cloud.classList.add("cloud");
-    cloud.posX = container.clientWidth;
-    cloud.style.left = container.clientWidth+"px";
-    cloud.style.bottom = minNubeY + Math.random() * (maxNubeY-minNubeY)+"px";
-    
-    clouds.push(cloud);
-    tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax-tiempoNubeMin) / gameVel;
+  container.appendChild(cloud);
+  cloud.classList.add("cloud");
+  cloud.posX = container.clientWidth;
+  cloud.style.left = container.clientWidth + "px";
+  cloud.style.bottom = minNubeY + Math.random() * (maxNubeY - minNubeY) + "px";
+
+  clouds.push(cloud);
+  tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax - tiempoNubeMin) / gameVel;
 }
 
 function MoverNube() {
   for (var i = clouds.length - 1; i >= 0; i--) {
-    if(clouds[i].posX < -clouds[i].clientWidth) {
-        clouds[i].parentNode.removeChild(clouds[i]);
-        clouds.splice(i, 1);
-        }else
-          {
-            clouds[i].posX -= CalcularDesplazamiento() * velNube;
-            clouds[i].style.left = clouds[i].posX+"px";
-        }
+    if (clouds[i].posX < -clouds[i].clientWidth) {
+      clouds[i].parentNode.removeChild(clouds[i]);
+      clouds.splice(i, 1);
+    } else {
+      clouds[i].posX -= CalcularDesplazamiento() * velNube;
+      clouds[i].style.left = clouds[i].posX + "px";
     }
+  }
 }
 
 //APARICIÓN DE OBSTACULOS
@@ -199,15 +197,15 @@ function CrearObstaculo() {
   var obstaculo = document.createElement("div");
   container.appendChild(obstaculo);
   obstaculo.classList.add("cactus");
-  if(Math.random() > 0.5) {
+  if (Math.random() > 0.5) {
     obstaculo.classList.add("cactus2");
   }
   obstaculo.posX = container.clientWidth;
   obstaculo.style.left = container.clientWidth + "px"; //Posición inicial del obstaculo
 
   obstaculos.push(obstaculo); //Añade el nuevo obstaculo al array de obstaculos
-  tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * 
-  (tiempoObstaculoMax - tiempoObstaculoMin) / gameVel; 
+  tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() *
+    (tiempoObstaculoMax - tiempoObstaculoMin) / gameVel;
 }
 
 //MOVIMIENTO DEL CACTUS
@@ -229,7 +227,7 @@ function AñadirCoin() {
   if (tiempoHastaCoin <= 0) {
     CrearCoin();
   }
-  
+
 }
 
 function CrearCoin() {
@@ -241,20 +239,20 @@ function CrearCoin() {
   coin.style.bottom = coinPsY + "px";
 
   coins.push(coin);
-  tiempoHastaCoin = tiempoHastaCoinMin + Math.random() * 
-  (tiempoHastaCoinMax - tiempoHastaCoinMin) / gameVel;
+  tiempoHastaCoin = tiempoHastaCoinMin + Math.random() *
+    (tiempoHastaCoinMax - tiempoHastaCoinMin) / gameVel;
 }
 
 function MoveCoin() {
-  for (var i = coins .length - 1; i >= 0; i--) {
-    if (coins [i].posX < -coins [i].clientWidth) {
-      coins [i].parentNode.removeChild(coins [i]);
+  for (var i = coins.length - 1; i >= 0; i--) {
+    if (coins[i].posX < -coins[i].clientWidth) {
+      coins[i].parentNode.removeChild(coins[i]);
       coins.splice(i, 1);
     } else {
-      coins [i].posX -= CalcularDesplazamiento();
-      coins [i].style.left = coins [i].posX + "px";
+      coins[i].posX -= CalcularDesplazamiento();
+      coins[i].style.left = coins[i].posX + "px";
     }
-  } 
+  }
 }
 
 //PUNTOS
@@ -273,8 +271,8 @@ function GameOver() {
 //REINICIAR JUEGO
 function ResetGame() {
   restart.addEventListener("click", () => {
-  window.location.reload(); //Tarda entre 5 y 10s en recargar la página.
-  console.log("Reiniciando juego...");
+    window.location.reload(); //Tarda entre 5 y 10s en recargar la página.
+    console.log("Reiniciando juego...");
   });
 }
 
@@ -300,15 +298,15 @@ function DetectarColision() {
 }
 
 //DETECTAR MONEDAS
-function DetectarMoneda () {
+function DetectarMoneda() {
   for (var i = 0; i < coins.length; i++) {
     if (coins[i].posX > dinoPosX + dino.clientWidth) {
       break;
-    } else {   
-    if (IsCollision(dino, coins[i], 15, 0, 10, 0)) {
+    } else {
+      if (IsCollision(dino, coins[i], 15, 0, 10, 0)) {
         console.log("Moneda recogida");
         // GetPoints();
-        GameOver();
+        GetPoints();
         coins[i].parentNode.removeChild(coins[i]);
         coins.splice(i, 1);
       }
