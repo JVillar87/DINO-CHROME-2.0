@@ -305,7 +305,6 @@ function DetectarMoneda() {
     } else {
       if (IsCollision(dino, coins[i], 15, 0, 10, 0)) {
         console.log("Moneda recogida");
-        // GetPoints();
         GetPoints();
         coins[i].parentNode.removeChild(coins[i]);
         coins.splice(i, 1);

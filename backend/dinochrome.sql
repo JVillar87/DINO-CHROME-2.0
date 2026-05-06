@@ -15,6 +15,6 @@ CREATE TABLE puntuaciones (
     -- Esto asegura que si se borra un usuario, se borren sus puntos
     FOREIGN KEY
 (usuario_id) REFERENCES usuarios
-(id) ON
+(id) ON 
 DELETE CASCADE
 );

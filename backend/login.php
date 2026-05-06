@@ -2,31 +2,23 @@
 session_start();
 require "config.php";
 
+$connection = getDinoChrome();
+
 $data = json_decode(file_get_contents("php://input"), true);
 
-$username = $data['username'] ?? '';
-$password = $data['password'] ?? '';
+$stmt = $connection->prepare("SELECT id, username, avatar, password FROM users WHERE username=?");
+$stmt->bind_param("s", $data['username']);
+$stmt->execute();
+$res = $stmt->get_result()->fetch_assoc();
 
-if ($username === '' || $password === '') {
-    echo json_encode(["success" => false, "message" => "Usuario y contraseña obligatorios"]);
-    exit;
-}
-
-try {
-    $connection = getDinoChrome();
-    $safeUsername = $connection->real_escape_string($username);
-    $sql = "SELECT username, password FROM users WHERE username = '{$safeUsername}' LIMIT 1";
-    $result = $connection->query($sql);
-    $user = $result ? $result->fetch_assoc() : null;
-
-    if ($user && $password === $user['password']) {
-        $_SESSION['user'] = $user['username'];
-        echo json_encode(["success" => true]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Credenciales incorrectas"]);
-    }
-
-    $connection->close();
-} catch (Throwable $e) {
-    echo json_encode(["success" => false, "message" => "Error de conexión con la base de datos"]);
+if ($res && password_verify($data['password'], $res['password'])) {
+    $_SESSION['user_id'] = $res['id'];
+    echo json_encode([
+        "status" => "ok",
+        "id" => $res['id'],
+        "username" => $res['username'],
+        "avatar" => $res['avatar']
+    ]);
+} else {
+    echo json_encode(["error" => "Invalid"]);
 }
