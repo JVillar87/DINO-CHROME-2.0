@@ -12,7 +12,6 @@ CREATE TABLE puntuaciones (
     nivel VARCHAR
 (50),
     fecha_logro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- Esto asegura que si se borra un usuario, se borren sus puntos
     FOREIGN KEY
 (usuario_id) REFERENCES usuarios
 (id) ON 

@@ -34,5 +34,5 @@ try {
 
     echo json_encode(["success" => true, "message" => "Puntos guardados"]);
 } catch (Throwable $e) {
-    echo json_encode(["success" => false, "message" => "No se pudo guardar los puntos"]);
+    echo json_encode(["success" => false, "message" => "ERROR: No se pudo guardar los puntos"]);
 }
