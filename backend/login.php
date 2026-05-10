@@ -20,5 +20,5 @@ if ($res && password_verify($data['password'], $res['password'])) {
         "avatar" => $res['avatar']
     ]);
 } else {
-    echo json_encode(["error" => "Invalid"]);
+    echo json_encode(["error" => "Usuario o contraseña incorrectos"]);
 }
