@@ -6,7 +6,7 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
     const errorMessage = document.getElementById("error-message");
 
     try {
-        const response = await fetch("../backend/login.php", {
+        const response = await fetch("login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

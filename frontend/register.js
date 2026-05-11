@@ -1,7 +1,7 @@
 document.getElementById("register-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
+    const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
     const messageBox = document.getElementById("register-message");
@@ -12,13 +12,17 @@ document.getElementById("register-form").addEventListener("submit", async (event
     }
 
     try {
-        const response = await fetch("../backend/register.php", {
+        const response = await fetch("register.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ username, password })
         });
+        //api("register.php", 
+        // { username:user.value,
+        //   password: password.value}) 
+        // });
 
         const data = await response.json();
 
@@ -35,5 +39,6 @@ document.getElementById("register-form").addEventListener("submit", async (event
     } catch (error) {
         messageBox.style.color = "#c0392b";
         messageBox.textContent = "No se pudo conectar con el servidor";
+        //echo json_enconde($e->getMessage());
     }
 });
