@@ -1,7 +1,11 @@
-CREATE TABLE usuarios (
+CREATE DATABASE IF NOT EXISTS dinocrome;
+USE dinocrome;
+
+CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -11,6 +15,6 @@ CREATE TABLE puntuaciones (
     puntos INTEGER NOT NULL,
     nivel VARCHAR(50),
     fecha_logro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios (id) 
+    FOREIGN KEY (usuario_id) REFERENCES users (id) 
     ON DELETE CASCADE
 );
