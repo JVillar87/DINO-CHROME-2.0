@@ -11,7 +11,7 @@ if (!$data['username'] || !$data['password']) {
     exit;
 }
 
-$stmt = $connection->prepare("SELECT id, username, avatar, password FROM users WHERE username=?");
+$stmt = $connection->prepare("SELECT id, username, password FROM users WHERE username=?");
 $stmt->bind_param("s", $data['username']);
 $stmt->execute();
 $res = $stmt->get_result()->fetch_assoc();
@@ -21,8 +21,7 @@ if ($res && $data['password'] === $res['password']) {
     echo json_encode([
         "status" => "ok",
         "id" => $res['id'],
-        "username" => $res['username'],
-        "avatar" => $res['avatar']
+        "username" => $res['username']
     ]);
 } else {
     echo json_encode(["error" => "Usuario o contraseña incorrectos"]);

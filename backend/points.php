@@ -18,7 +18,7 @@ if (!$user_id || $puntos === null) {
 try {
     $connection = getDinoChrome();
 
-    // Aseguramos que nivel sea string (puede ser null)
+    // Aseguramos que nivel sea un string (puede ser null)
     if ($nivel === null) $nivel = '';
 
     $stmt = $connection->prepare("INSERT INTO puntuaciones (usuario_id, puntos, nivel) VALUES (?, ?, ?)");
