@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DINO CHROME GAME</title>
     <link href="../frontend/styles.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="game-container">
-
+        <!-- Display del nombre del usuario autenticado -->
+        <div id="user-display"></div>
         <div id="floor"> </div>
-
         <div id="dino" class="dino dino-running"> </div>
-        
+
+        <!-- Puntuación del juego -->
         <div id="score">0</div>
 
+        <!-- Mensaje de Game Over y botón de reinicio -->
         <div class="game-over">GAME OVER</div>
-        <button class="restart">RESTART</button>    
-    </div>  
+        <button class="restart">RESTART</button>
+    </div>
 
     <script src="../frontend/script.js"></script>
 </body>
-</html>   
+
+</html>

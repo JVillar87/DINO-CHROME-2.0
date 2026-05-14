@@ -17,6 +17,9 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
         const data = await response.json();
 
         if (data.status === "ok") {
+            // Guarda el nombre de usuario en localStorage para usarlo en pantalla juego
+            localStorage.setItem("username", data.username);
+            // Redirige al juego después de guardar el usuario
             window.location.href = "../frontend/DinoChrome.html";
         } else {
             errorMessage.textContent = data.error || "Error de login";

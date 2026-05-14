@@ -103,6 +103,13 @@ function Start() {
   textScore = document.querySelector("#score");
   dino = document.querySelector("#dino");
 
+  // Obtener el nombre de usuario guardado en localStorage y mostrarlo en pantalla
+  const username = localStorage.getItem("username");
+  if (username) {
+    // Actualizar el elemento user-display con solo el nombre del usuario
+    document.querySelector("#user-display").textContent = username;
+  }
+
   document.addEventListener("keydown", HandleKeyDown);
 }
 

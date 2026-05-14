@@ -39,3 +39,4 @@ try {
 } catch (Throwable $e) {
     echo json_encode(["success" => false, "message" => "No se pudo registrar el usuario"]);
 }
+?>
