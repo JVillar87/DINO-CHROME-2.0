@@ -2,7 +2,7 @@
 
 function getDinoChrome(): mysqli
 {
-    $servername = "localhost";
+    $servername = "localhost"; //127.0.0.1 IP local
     $username = "root";
     $password = "";
     $dbname = "dinocrome";
@@ -14,4 +14,3 @@ function getDinoChrome(): mysqli
     }
     return $connection;
 }
-?>

@@ -12,7 +12,7 @@ document.getElementById("register-form").addEventListener("submit", async (event
     }
 
     try {
-        const response = await fetch("register.php", {
+        const response = await fetch("../backend/register.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -30,7 +30,7 @@ document.getElementById("register-form").addEventListener("submit", async (event
             messageBox.style.color = "#1f7a3f";
             messageBox.textContent = data.message || "Usuario registrado correctamente";
             setTimeout(() => {
-                window.location.href = "Login.html";
+                window.location.href = "../frontend/Login.html";
             }, 1200);
         } else {
             messageBox.style.color = "#c0392b";

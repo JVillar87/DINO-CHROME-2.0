@@ -21,9 +21,9 @@ try {
     // Aseguramos que nivel sea un string (puede ser null)
     if ($nivel === null) $nivel = '';
 
-    $stmt = $connection->prepare("INSERT INTO puntuaciones (usuario_id, puntos, nivel) VALUES (?, ?, ?)");
+    $stmt = $connection->prepare("INSERT INTO puntuaciones (usuario_id, puntos) VALUES (?, ?)");
     if (!$stmt) throw new RuntimeException('Prepare failed');
-    $stmt->bind_param("iis", $user_id, $puntos, $nivel);
+    $stmt->bind_param("ii", $user_id, $puntos);
 
     if (!$stmt->execute()) {
         throw new RuntimeException('Execute failed');

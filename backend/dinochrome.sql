@@ -13,7 +13,6 @@ CREATE TABLE puntuaciones (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     usuario_id INTEGER NOT NULL,
     puntos INTEGER NOT NULL,
-    nivel VARCHAR(50),
     fecha_logro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES users (id) 
     ON DELETE CASCADE

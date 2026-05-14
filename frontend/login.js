@@ -6,7 +6,7 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
     const errorMessage = document.getElementById("error-message");
 
     try {
-        const response = await fetch("login.php", {
+        const response = await fetch("../backend/login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -17,7 +17,7 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
         const data = await response.json();
 
         if (data.status === "ok") {
-            window.location.href = "DinoChrome.html";
+            window.location.href = "../frontend/DinoChrome.html";
         } else {
             errorMessage.textContent = data.error || "Error de login";
         }
