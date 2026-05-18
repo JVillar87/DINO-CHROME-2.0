@@ -30,7 +30,7 @@ document.getElementById("register-form").addEventListener("submit", async (event
             messageBox.style.color = "#1f7a3f";
             messageBox.textContent = data.message || "Usuario registrado correctamente";
             setTimeout(() => {
-                window.location.href = "../frontend/Login.html";
+                window.location.href = "../frontend/Index.html";
             }, 1200);
         } else {
             messageBox.style.color = "#c0392b";
