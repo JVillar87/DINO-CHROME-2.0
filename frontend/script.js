@@ -346,12 +346,12 @@ function SaveScore(points) {
     .then(data => {
       console.log("Respuesta del servidor:", data);
       if (data.success) {
-        console.log("✅ Puntuación guardada: " + points);
+        console.log("Puntuación guardada: " + points);
       } else {
-        console.log("❌ Error al guardar puntuación: " + data.message);
+        console.log("Error al guardar puntuación: " + data.message);
       }
     })
     .catch(error => {
-      console.error("❌ Error en la solicitud:", error);
+      console.error("Error en la solicitud:", error);
     });
 }

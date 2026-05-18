@@ -70,7 +70,7 @@ body {
     text-align: right;
 }
 
-#user-display{
+/* #user-display{
     width: auto;
     height: 30px;
     position: absolute;
@@ -83,7 +83,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     text-align: right;
-}
+} */
 
 .cactus{
     width: 46px;
