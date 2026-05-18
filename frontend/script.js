@@ -266,6 +266,7 @@ function GameOver() {
   Crash();
   gameOver.style.display = "block";
   restart.style.display = "block";
+  SaveScore(score); // Enviar puntuación a la base de datos
 }
 
 //REINICIAR JUEGO
@@ -328,4 +329,29 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
   // Tiene en cuenta el padding para ajustar la zona de colisión
 
   return !IsCollision;
+}
+
+// GUARDAR PUNTUACIÓN EN LA BASE DE DATOS
+function SaveScore(points) {
+  fetch("../backend/points.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      puntos: points
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Respuesta del servidor:", data);
+      if (data.success) {
+        console.log("✅ Puntuación guardada: " + points);
+      } else {
+        console.log("❌ Error al guardar puntuación: " + data.message);
+      }
+    })
+    .catch(error => {
+      console.error("❌ Error en la solicitud:", error);
+    });
 }
