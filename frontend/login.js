@@ -6,7 +6,7 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
     const errorMessage = document.getElementById("error-message");
 
     try {
-        const response = await fetch("../backend/login.php", {
+        const response = await fetch("login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -20,7 +20,7 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
             // Guarda el nombre de usuario en localStorage para usarlo en pantalla juego
             localStorage.setItem("username", data.username);
             // Redirige al juego después de guardar el usuario
-            window.location.href = "../frontend/DinoChrome.html";
+            window.location.href = "DinoChrome.html";
         } else {
             errorMessage.textContent = data.error || "Error de login";
         }

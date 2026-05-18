@@ -7,8 +7,8 @@ function getDinoChrome(): mysqli
     $password = "";
     $dbname = "dinocrome";
 
-    //$connection = new mysqli($servername, $username, $password, $dbname); /*LOCAL (Xampp)*/
-    $connection = new mysqli("sql101.infinityfree.com", "if0_41887203", "RPGw6HnfUhfpOSe", "if0_41887203_dinocrome"); /*BBDD INFINITYFREE (Hosting)*/
+    $connection = new mysqli($servername, $username, $password, $dbname); /*LOCAL (Xampp)*/
+    //$connection = new mysqli("sql101.infinityfree.com", "if0_41887203", "RPGw6HnfUhfpOSe", "if0_41887203_dinocrome"); /*BBDD INFINITYFREE (Hosting)*/
     if ($connection->connect_error) {
         die("Connection failed: " . $connection->connect_error);
     }
