@@ -12,7 +12,7 @@ body {
 
 }
 
-#game-container{
+#game-container {
     width: 950px;
     height: 290px;
     position: relative;
@@ -32,7 +32,7 @@ body {
     background-size: 92px 26px;
 }
 
-#floor{
+#floor {
     width: 200%;
     height: 42px;
     position: absolute;
@@ -43,7 +43,7 @@ body {
     background-size: 50% 42px;
 }
 
-.coin{
+.coin {
     width: 15%;
     height: 50%;
     position: absolute;
@@ -55,7 +55,7 @@ body {
 }
 
 
-#score{
+#score {
     width: 100px;
     height: 30px;
     position: absolute;
@@ -70,22 +70,22 @@ body {
     text-align: right;
 }
 
-/* #user-display{
+#user-display {
     width: auto;
     height: 30px;
     position: absolute;
     top: 5px;
-    right: 15px;
+    left: 15px;
     z-index: 10;
 
     color: #d88d78;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: Verdana;
     font-size: 20px;
     font-weight: bold;
-    text-align: right;
-} */
+    text-align: left;
+}
 
-.cactus{
+.cactus {
     width: 46px;
     height: 96px;
     position: absolute;
@@ -96,14 +96,14 @@ body {
     background: url(../frontend/img/cactus1.png) no-repeat;
 }
 
-.cactus2{
+.cactus2 {
     width: 98px;
     height: 66px;
 
     background: url(../frontend/img/cactus2.png) no-repeat;
 }
 
-.dino{
+.dino {
     width: 84px;
     height: 84px;
     position: absolute;
@@ -115,15 +115,15 @@ body {
     background-position: 0px;
 }
 
-.dino-running{
+.dino-running {
     animation: animarDino 0.25s steps(2) infinite;
 }
 
-.dino-crashed{
+.dino-crashed {
     background-position-x: -252px;
 }
 
-.game-over{
+.game-over {
     display: none;
     position: absolute;
     width: 100%;
@@ -138,10 +138,10 @@ body {
     z-index: 100;
 }
 
-.restart{
+.restart {
     display: none;
     position: absolute;
-    top: 60%; 
+    top: 60%;
     left: 50%;
     border: 1px solid #da5454;
     transform: translate(-50%, -50%);
@@ -150,17 +150,18 @@ body {
     color: #da5454;
     font-family: system-ui, 'Helvetica Neue', sans-serif;
     font-weight: 800;
-    z-index: 100; 
-    cursor: pointer; 
+    z-index: 100;
+    cursor: pointer;
 }
 
 
 @keyframes animarDino {
-    from{
+    from {
         background-position: -84px;
     }
-    to{
+
+    to {
         background-position: -252px;
     }
-    
+
 }

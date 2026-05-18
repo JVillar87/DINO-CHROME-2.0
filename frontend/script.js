@@ -89,19 +89,26 @@ var velNube = 0.5;
 var container;
 var dino;
 var textScore;
+var hallOfFame;
+var hallOfFameList;
 var floor;
 var gameOver;
 var restart;
+var hasGameEnded = false;
 
 
 
 function Start() {
   gameOver = document.querySelector(".game-over");
+  hallOfFame = document.querySelector("#hall-of-fame");
+  hallOfFameList = document.querySelector("#hall-of-fame-list");
   restart = document.querySelector(".restart");
   floor = document.querySelector("#floor");
   container = document.querySelector("#game-container");
   textScore = document.querySelector("#score");
   dino = document.querySelector("#dino");
+
+  LoadUser();
 
   document.addEventListener("keydown", HandleKeyDown);
 }
@@ -263,10 +270,21 @@ function GetPoints() {
 
 //ELIMINADO
 function GameOver() {
+  if (hasGameEnded) {
+    return;
+  }
+
+  hasGameEnded = true;
   Crash();
   gameOver.style.display = "block";
+  hallOfFame.style.display = "block";
   restart.style.display = "block";
-  SaveScore(score); // Enviar puntuación a la base de datos
+  SaveScore(score)
+    .then(() => LoadHallOfFame())
+    .catch(error => {
+      console.error("No se pudo actualizar el hall of fame:", error);
+      LoadHallOfFame();
+    });
 }
 
 //REINICIAR JUEGO
@@ -333,7 +351,7 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
 
 // GUARDAR PUNTUACIÓN EN LA BASE DE DATOS
 function SaveScore(points) {
-  fetch("../backend/points.php", {
+  return fetch("../backend/points.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -353,5 +371,25 @@ function SaveScore(points) {
     })
     .catch(error => {
       console.error("Error en la solicitud:", error);
+      throw error;
+    });
+}
+
+function LoadUser() {
+  const userDisplay = document.querySelector("#user-display");
+
+  fetch("../backend/getuser.php")
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.username) {
+        userDisplay.textContent = data.username;
+      } else {
+        userDisplay.textContent = "";
+        console.log(data.message || "No se pudo obtener el usuario");
+      }
+    })
+    .catch(error => {
+      userDisplay.textContent = "";
+      console.error("Error al cargar el usuario:", error);
     });
 }
