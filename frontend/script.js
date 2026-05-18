@@ -89,8 +89,6 @@ var velNube = 0.5;
 var container;
 var dino;
 var textScore;
-var hallOfFame;
-var hallOfFameList;
 var floor;
 var gameOver;
 var restart;
@@ -100,8 +98,6 @@ var hasGameEnded = false;
 
 function Start() {
   gameOver = document.querySelector(".game-over");
-  hallOfFame = document.querySelector("#hall-of-fame");
-  hallOfFameList = document.querySelector("#hall-of-fame-list");
   restart = document.querySelector(".restart");
   floor = document.querySelector("#floor");
   container = document.querySelector("#game-container");
@@ -277,13 +273,10 @@ function GameOver() {
   hasGameEnded = true;
   Crash();
   gameOver.style.display = "block";
-  hallOfFame.style.display = "block";
   restart.style.display = "block";
   SaveScore(score)
-    .then(() => LoadHallOfFame())
     .catch(error => {
-      console.error("No se pudo actualizar el hall of fame:", error);
-      LoadHallOfFame();
+      console.error("No se pudo guardar la puntuación:", error);
     });
 }
 
